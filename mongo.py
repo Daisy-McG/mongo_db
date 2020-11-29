@@ -38,9 +38,26 @@ new_docs = [{"first": "terry",
              "nationality": "american"},
             ]
 
+# Insert Many
 coll.insert_many(new_docs)
 
+# Find all
 documents = coll.find()
 
+# Find specific records, ie first nme of douglas
+documents = coll.find({"first": "douglas"})
+
+# Remove specific records
+coll.remove({"first": "douglas"})
+
+# Update first record with nationality american
+coll.update_one({"nationality": "american"},
+                {"$set": {"hair_color": "maroon"}})
+
+# Update all records with nationality american
+coll.update_many({"nationality": "american"},
+                 {"$set": {"hair_color": "maroon"}})
+
+# Print all records in db
 for doc in documents:
     print(doc)
